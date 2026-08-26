@@ -1,0 +1,376 @@
+/* ==========================================================================
+   FORGE & FLAME - MASTER DESIGN SYSTEM
+   Luxury Steakhouse & Raw Grill Visual Identity
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-pitch-black: #080808;
+    --color-surface: #0e0e0e;
+    --color-surface-elevated: #161616;
+    --color-surface-container: #1a1a1a;
+    --color-surface-border: rgba(255, 255, 255, 0.08);
+    --color-surface-border-hover: rgba(244, 162, 97, 0.3);
+    
+    --color-fire-red: #E63946;
+    --color-fire-red-glow: rgba(230, 57, 70, 0.35);
+    --color-burnt-orange: #F4A261;
+    --color-ember-gold: #FFB780;
+    --color-midnight-blue: #1D3557;
+    
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #C9C6C5;
+    --color-text-muted: #8E9192;
+    --color-text-dim: #555555;
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Spacing & Layout */
+    --container-max: 1280px;
+    --gutter: 24px;
+    --section-gap: 120px;
+    --section-gap-mobile: 64px;
+    
+    /* Transitions & Curves */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.35s ease;
+    --transition-slow: 0.7s var(--ease-out-expo);
+}
+
+/* --------------------------------------------------------------------------
+   Base & Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background-color: var(--color-pitch-black);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--color-pitch-black);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #080808;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-fire-red);
+}
+
+/* Selection */
+::selection {
+    background: var(--color-fire-red);
+    color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Typography Hierarchy
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+}
+
+.text-display-lg {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.text-display-md {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.text-headline-sm {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.text-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+}
+
+.text-body-md {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.text-label-caps {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.text-fire {
+    color: var(--color-fire-red);
+}
+
+.text-burnt {
+    color: var(--color-burnt-orange);
+}
+
+.text-ember {
+    color: var(--color-ember-gold);
+}
+
+/* --------------------------------------------------------------------------
+   Containers & Layouts
+   -------------------------------------------------------------------------- */
+.container-custom {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(20px, 4vw, 48px);
+    padding-right: clamp(20px, 4vw, 48px);
+}
+
+.section-padding {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding-top: var(--section-gap-mobile);
+        padding-bottom: var(--section-gap-mobile);
+    }
+}
+
+/* Leader Dots for Luxury Menus */
+.leader-dots {
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.25);
+    flex-grow: 1;
+    margin: 0 16px;
+    position: relative;
+    top: -6px;
+    transition: border-color var(--transition-fast);
+}
+
+.menu-item-row:hover .leader-dots {
+    border-bottom-color: var(--color-burnt-orange);
+}
+
+/* Glass Panels & Ghost Borders */
+.glass-panel {
+    background: rgba(14, 14, 14, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-surface-border);
+}
+
+.glass-card {
+    background: rgba(22, 22, 22, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-surface-border);
+    transition: transform var(--transition-slow), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.glass-card:hover {
+    border-color: var(--color-surface-border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 57, 70, 0.1);
+}
+
+.ghost-border {
+    border: 1px solid var(--color-surface-border);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Cursor (GSAP Driven)
+   -------------------------------------------------------------------------- */
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(244, 162, 97, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+.custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-fire-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--color-fire-red);
+}
+
+.custom-cursor-follower.hovering {
+    width: 60px;
+    height: 60px;
+    background: rgba(230, 57, 70, 0.15);
+    border-color: var(--color-fire-red);
+}
+
+@media (max-width: 1024px) {
+    .custom-cursor-follower, .custom-cursor-dot {
+        display: none !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Ember Canvas Background
+   -------------------------------------------------------------------------- */
+#ember-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   GSAP Reveal Helpers
+   -------------------------------------------------------------------------- */
+.gsap-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+.gsap-parallax-img {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+.image-reveal-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.image-reveal-wrapper img {
+    transform: scale(1.15);
+    transition: transform 1.2s var(--ease-out-expo);
+}
+
+.image-reveal-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   Header & Navigation
+   -------------------------------------------------------------------------- */
+#mainNav {
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+}
+
+#mainNav.scrolled {
+    background-color: rgba(8, 8, 8, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-link {
+    position: relative;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--color-fire-red);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-burnt-orange);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--color-burnt-orange);
+}
+
+/* Mobile Menu Drawer */
+#mobileMenuDrawer {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(8, 8, 8, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#mobileMenuDrawer.active {
+    opacity: 1;
+    pointer-events: auto;
+}
