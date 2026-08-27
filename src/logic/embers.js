@@ -3,21 +3,26 @@
  * High-performance lightweight HTML5 Canvas ember simulation
  */
 
-class EmberParticleSystem {
-    constructor(canvasId = 'ember-canvas') {
-        this.canvas = document.getElementById(canvasId);
+export class EmberParticleSystem {
+    constructor(canvas) {
+        if (typeof canvas === 'string') {
+            this.canvas = document.getElementById(canvas);
+        } else {
+            this.canvas = canvas;
+        }
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
         this.particleCount = window.innerWidth < 768 ? 35 : 75;
         this.animationFrameId = null;
+        this.handleResize = () => this.resize();
         
         this.init();
     }
 
     init() {
         this.resize();
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', this.handleResize);
 
         for (let i = 0; i < this.particleCount; i++) {
             this.particles.push(this.createParticle(true));
@@ -80,11 +85,6 @@ class EmberParticleSystem {
         if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
         }
+        window.removeEventListener('resize', this.handleResize);
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('ember-canvas')) {
-        window.emberSystem = new EmberParticleSystem('ember-canvas');
-    }
-});

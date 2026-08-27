@@ -134,28 +134,82 @@
 }
 
 /* --------------------------------------------------------------------------
-   Input Fields (Minimal Bottom Border Styling)
+   Input Fields (Luxury Dark Theme with High Specificity overrides)
    -------------------------------------------------------------------------- */
-.input-minimal {
+.input-minimal,
+input.input-minimal,
+textarea.input-minimal,
+select.input-minimal,
+input[type='text'].input-minimal,
+input[type='email'].input-minimal,
+input[type='tel'].input-minimal,
+input[type='number'].input-minimal,
+input[type='date'].input-minimal,
+input[type='time'].input-minimal {
     width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 14px 4px;
-    color: #ffffff;
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #121212 !important;
+    background: #121212 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 4px !important;
+    padding: 12px 14px !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.9375rem !important;
+    outline: none !important;
+    color-scheme: dark !important;
+    box-shadow: none !important;
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease !important;
 }
 
-.input-minimal:focus {
-    border-bottom-color: var(--color-fire-red);
-    background-color: rgba(255, 255, 255, 0.02);
+.input-minimal:focus,
+input.input-minimal:focus,
+textarea.input-minimal:focus,
+select.input-minimal:focus,
+input[type='text'].input-minimal:focus,
+input[type='email'].input-minimal:focus,
+input[type='tel'].input-minimal:focus,
+input[type='number'].input-minimal:focus,
+input[type='date'].input-minimal:focus,
+input[type='time'].input-minimal:focus {
+    border-color: var(--color-fire-red) !important;
+    border-bottom-color: var(--color-fire-red) !important;
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
+    box-shadow: 0 0 0 1px rgba(230, 57, 70, 0.35) !important;
+    outline: none !important;
 }
 
 .input-minimal::placeholder {
-    color: var(--color-text-dim);
+    color: #8E9192 !important;
+    opacity: 0.85 !important;
+}
+
+select.input-minimal option,
+.input-minimal option {
+    background-color: #181818 !important;
+    color: #ffffff !important;
+}
+
+/* Webkit Date/Time & Number Input Controls */
+input[type="date"].input-minimal::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.2);
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+input[type="date"].input-minimal::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+input[type="date"].input-minimal::-webkit-datetime-edit,
+input[type="date"].input-minimal::-webkit-datetime-edit-fields-wrapper,
+input[type="date"].input-minimal::-webkit-datetime-edit-text,
+input[type="date"].input-minimal::-webkit-datetime-edit-month-field,
+input[type="date"].input-minimal::-webkit-datetime-edit-day-field,
+input[type="date"].input-minimal::-webkit-datetime-edit-year-field {
+    color: #ffffff !important;
 }
 
 .form-label {
@@ -219,13 +273,14 @@
 /* --------------------------------------------------------------------------
    Modals & Dialogs
    -------------------------------------------------------------------------- */
-.modal-overlay {
+.modal-overlay,
+.custom-modal {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    z-index: 100;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -235,12 +290,14 @@
     transition: opacity 0.3s ease;
 }
 
-.modal-overlay.active {
+.modal-overlay.active,
+.custom-modal.active {
     opacity: 1;
     pointer-events: auto;
 }
 
-.modal-content-box {
+.modal-content-box,
+.custom-modal .glass-card {
     background: #111111;
     border: 1px solid var(--color-surface-border-hover);
     max-width: 540px;
@@ -252,7 +309,8 @@
     transition: transform 0.3s var(--ease-out-expo);
 }
 
-.modal-overlay.active .modal-content-box {
+.modal-overlay.active .modal-content-box,
+.custom-modal.active .glass-card {
     transform: scale(1);
 }
 
